@@ -1,5 +1,6 @@
 package Transport;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class Car {
@@ -14,10 +15,76 @@ public class Car {
     private String regNumber;
     private final Integer numberOfSeats;
     private String summerTires;
+    private final Key key;
+    private final Insurance insurance;
+
+    private static class Key{
+        private  Boolean isEngineStarting;
+        private Boolean isNonKey;
+
+        public Key(String engineStarting, String nonKey) {
+
+            if (engineStarting == null) {
+                isEngineStarting = false;
+            }else {
+                isEngineStarting = engineStarting.equals("Есть");
+            }
+            if (nonKey == null) {
+                isNonKey = false;
+            } else {
+                isNonKey = nonKey.equals("Есть");
+            }
+        }
+
+        @Override
+        public String toString() {
+            return "key{" +
+                    "engineStarting=" + isEngineStarting +
+                    ", nonKey=" + isNonKey +
+                    '}';
+        }
+    }
+    private static class Insurance{
+        private LocalDate validity;
+        private Float costIns;
+        private String numOfIns;
+
+        private Insurance(String dateIns, Float costIns, String numOfIns) {
+                if (dateIns == null || dateIns.isEmpty() || dateIns.isBlank() || dateIns.length() != 10) {
+                    validity = LocalDate.parse("2000-12-01");
+                    System.out.println("Некорректная дата");
+                } else {
+                    validity = LocalDate.parse(dateIns.replace('.', '-'));
+                }
+                if (costIns == null || costIns < 0) {
+                    this.costIns = 0f;
+                } else {
+                    this.costIns = costIns;
+                }
+                if (numOfIns == null || numOfIns.isBlank() || numOfIns.isEmpty()) {
+                    this.numOfIns = "Не указано";
+                } else if (numOfIns.length() != 9) {
+                    this.numOfIns = "Не указано";
+                    System.out.println("Некорректный номер страхового полиса!");
+                } else {
+                    this.numOfIns = numOfIns;
+                }
+            }
+
+        @Override
+        public String toString() {
+            return "Insurance{" +
+                    "validity=" + validity +
+                    ", costIns=" + costIns +
+                    ", numOfIns='" + numOfIns + '\'' +
+                    '}';
+        }
+    }
+
 
     public Car(String brand, String model, int productionYear, String color, String productionCountry,
                Float engineVolume, String transmission,String body,String regNumber, Integer numberOfSeats,
-               String summerTires) {
+               String summerTires, String engineStarting,String nonKey,String validity, Float costIns, String numOfIns) {
         this.brand = Objects.requireNonNullElse(brand, "default");
         this.model = Objects.requireNonNullElse(model, "default");
         if (productionYear >= 0) {
@@ -53,6 +120,8 @@ public class Car {
         } else {
             this.summerTires = summerTires;
         }
+        key = new Key(engineStarting, nonKey);
+        insurance = new Insurance(validity, costIns, numOfIns);
 
     }
 
