@@ -1,38 +1,57 @@
-import Transport.Car;
+import Animals.*;
+import Transport.Bus;
+import Transport.Train;
 
 public class Main {
     public static void main(String[] args) {
-        Car lada = new Car("Lada","Granta",2015,"yellow","Russia",
-                1.7f,"avtomat","Universal","A555AA555",5,
-                "summerT",null,"no",null,33.12f,"111222333");
-        System.out.println(lada);
+
+        Train lastoshka = new Train("Ласточка", "B-901", 2011, "Россия",
+                301, 3500f, null, "Белорусский вокзал", "Минск",
+                11);
+        System.out.println(lastoshka);
+        System.out.println();
+        Train leningrad = new Train("Ленинград", "D-125", 2019, "Россия",
+                270, 1700f, null, "Ленинградский вокзал", "Ленинград-Пассажирский",
+                 8);
+        System.out.println(leningrad);
+        System.out.println();
+        Bus bogdan = new Bus("Богдан", "КЕМ", 1999, "Украина", "синий", 165);
+        System.out.println(bogdan);
+        System.out.println();
+        Bus wolks = new Bus("Фольцваген", "транспортер", 1985, "Германия", "зеленый", 190);
+        System.out.println(wolks);
+        System.out.println();
+        Bus gazel = new Bus("Газель", "Тыгыдык", 2020, "Россия", "красный", 205);
+        System.out.println(gazel);
         System.out.println();
 
-        Car audi = new Car("Audi","A8",2020,"black","Germany",
-                3.0f,"avtomat","universal","B111BB111",5,
-                "summerT","yes","yes",null,56.15f,"1111111111");
-        System.out.println(audi);
-        System.out.println();
+        Herbivore bizon = new Herbivore("Бизон", 1, 55);
+        System.out.println(bizon);
+        Herbivore antilopa = new Herbivore("Антилопа", 5, 70);
+        System.out.println(antilopa);
+        Predator lion = new Predator("Лев", 3, 60);
+        System.out.println(lion);
+        Predator pantera = new Predator("Пантера", 6, 45);
+        System.out.println(pantera);
+        Amphibian gikon = new Amphibian("Гекон", 2);
+        System.out.println(gikon);
+        Amphibian iguana = new Amphibian("Игуана", 4);
+        System.out.println(iguana);
+        FlightlessBird straus = new FlightlessBird("Страус", 3);
+        System.out.println(straus);
+        FlightlessBird emu = new FlightlessBird("Эму", 3);
+        System.out.println(emu);
+        FlyingBird vorona = new FlyingBird("Ворона", 1);
+        System.out.println(vorona);
+        FlyingBird jastreb = new FlyingBird("Ястреб", 1);
+        System.out.println(jastreb);
 
-        Car bmw = new Car("BMW","Z8",2021,"black","Germany",
-                0f,"avtomat",null,"DDD333558",5,
-                "summerT","yes",null,"2023.10.10",44.56f,"222222222");
-        System.out.println(bmw);
-        System.out.println();
-
-        Car kia = new Car("Kia","Srortage", 2018, null, "South Korea",
-                2.4f,null,"universal","C777CC777",3,
-                null,"no","no","2024.01.01",69.49f,"555555555");
-        System.out.println(kia);
-        System.out.println();
-
-        Car hyundai = new Car("Hyundai","Avente", 2016,"red", null,
-                1.6f,"mechanic","universal",null,4,
-                "summmerT","no","no",null,null,null);
-        System.out.println(hyundai);
-        System.out.println();
+        lion.hunt();
+        iguana.hunt();
 
 
-
-    }
+        Herbivore lopa = new Herbivore("Антилопа", 3, 60);
+        System.out.println(antilopa.equals(lopa));
+        System.out.println(antilopa.equals(pantera));
+}
 }
